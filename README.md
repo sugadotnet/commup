@@ -2,11 +2,13 @@
 
 Commup is integrated application from stock, warehouse management, sales and casier developend using Microsoft ASP.NET MVC.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Features
+1. Product record with barcode system
+2. Wharehouse management.
+3. Product allocation.
+4. Product Display.
+5. Product sales and payment.
+6. Dashboard base monitoring.
 
 ```markdown
 Syntax highlighted code block
