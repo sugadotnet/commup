@@ -1,10 +1,8 @@
 ---
-title: Welcome
+title: Welcome to Commup
 permalink: /docs/home/
 redirect_from: /docs/index.html
 ---
-
-## Welcome to Commup
 
 Commup is integrated application from stock, warehouse management, sales and casier developend using Microsoft ASP.NET MVC.
 
