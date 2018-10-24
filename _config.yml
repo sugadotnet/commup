@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SITE CONFIGURATION
 baseurl: "/Type-on-Strap"
 url: "https://sylhare.github.io"
@@ -115,3 +116,6 @@ sass:
 plugins: [jekyll-paginate, jekyll-seo-tag]
 #theme: type-on-strap # Uncomment if using the theme as a jekyll theme gem
 exclude: ["Gemfile", "Gemfile.lock", "type-on-strap.gemspec", "*.gem", "LICENSE", "README.md", "screenshot.png", "package.json", "node_modules", "gulpfile.js", ".idea/*"]
+=======
+theme: jekyll-theme-minimal
+>>>>>>> f692bb487b3675ee60809da56f484058e7a0023a
