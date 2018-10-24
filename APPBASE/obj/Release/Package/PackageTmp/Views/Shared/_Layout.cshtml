@@ -1,0 +1,60 @@
+﻿@using APPBASE.Helpers
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/cssNormal")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Aplikasi HRD", "Index", "Home")</p>
+
+                        @if (hlpConfig.SessionInfo.getAppUsrRUID() != "") {
+                            <div id="menu">
+                                <ul class="menu">
+                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Informasi Karyawan", "Index", "Employeeinfo")</li>
+                                    <li>@Html.ActionLink("Cuti Besar", "Index", "Cutibesar")</li>
+                                    <li>@Html.ActionLink("Kontrol Panel", "Index", "User")</li>
+                                </ul>
+                            </div>
+                        }
+
+
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year by Arin Suga - Aplikasi HRD</p>
+                </div>
+                <div class="float-right">
+                    <div id="copyright"><a href="http://apycom.com/"></a></div>
+                </div>
+            </div>
+        </footer>
+
+        @{Html.RenderPartial("_JSVARPartial");}
+        @Scripts.Render("~/bundles/JSNormal")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

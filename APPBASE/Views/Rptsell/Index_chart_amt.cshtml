@@ -1,0 +1,17 @@
+﻿@model APPBASE.Models.ReportsellVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+<!-- Custom tabs (Charts with tabs)-->
+<div class="nav-tabs-custom">
+    <!-- Tabs within a box -->
+    <ul class="nav nav-tabs">
+        <li class="pull-left header"><i class="fa fa-inbox"></i> Trend Penjualan Tahun @Model.TRN_YEAR </li>
+    </ul>
+    <div class="tab-content no-padding">
+        <!-- Morris chart - Sales -->
+        <canvas id="sales-chart-line" width="400" height="400"></canvas>
+    </div>
+</div><!-- /.nav-tabs-custom -->
+

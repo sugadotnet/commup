@@ -1,0 +1,71 @@
+﻿@model IEnumerable<APPBASE.Models.PhotogallerylistVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Photo Sekolah";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <input type="text" id="searchValue" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Cari TITLE"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-flat btn-sm btn-info"><i class="fa fa-search"></i></button>
+                    <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-plus"></i> Tambah Foto</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null) {
+                    <tr>
+                        <td colspan="2" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-eye"></i> View Detail</a>
+                        </td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.TITLE)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

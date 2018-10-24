@@ -1,0 +1,21 @@
+﻿ 
+<!-- Modal -->
+<div class="modal fade" id="DialogFilter" tabindex="-1" role="dialog" aria-labelledby="DialogLookupTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-aqua">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Advance Filter</h4>
+      </div>
+      <div class="modal-body">
+        @{Html.RenderPartial("_Inputfilters_CPAR");}
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-flat btn-primary">Filter</button>
+        <button type="button" class="btn btn-flat btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>                        
+
+

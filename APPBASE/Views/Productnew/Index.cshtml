@@ -1,0 +1,104 @@
+﻿@model IEnumerable<APPBASE.Models.ProductnewVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Info Produk Baru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning pull-right" style="margin-left:5px; color:White;"><i class="fa fa-plus"></i> Tambah Barang Baru</a>
+                    @if (hlpConfig.SessionInfo.getAppRoleId() == 1) {
+                        <a href="@Url.Action("Indexvalidasi", "Product")" class="btn btn-flat btn-sm btn-primary" style="margin-left:5px; color:White;"><i class="fa fa-plus"></i> Validasi Data Barang</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div>Kode</div>
+                        <div>Barang</div>
+                    </th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Harga Pricelist</th>
+                    <th>Foto</th>
+                    <th>
+                        <div>Tanggal</div>
+                        <div>Barang</div>
+                        <div>Datang</div>
+                    </th>
+                    <th>Penyimpanan</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="2" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-search"></i></a>
+                        </td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PRODNEW_CODE)</td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PRODNEW_NAME)</td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PRODNEW_QTY) @Html.DisplayFor(modelItem => item.UOM_DESC)</td>
+                        <td class="SEARCHABLE_ROWS">@hlpConvertionAndFormating.ConvertDecimalToStringFmtThousand(item.PRODNEW_PRICE_BASE)</td>
+                        <td>
+                            @if (item.PRODNEW_IMAGE != null)
+                            {
+                                <img id="imgPRODNEW_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(item.PRODNEW_IMAGE)" class="img-thumbnail img-wide-sm" alt="Foto" />
+                            }
+                            else
+                            {
+                                <img id="imgPRODNEW_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+                            }
+                        </td>
+                        <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.PRODNEW_OPENDT)</td>
+                        <td>@Html.DisplayFor(fld => item.STORAGE_NAME)</td>
+                        <td>@Html.DisplayFor(fld => item.PRODNEW_DESC)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

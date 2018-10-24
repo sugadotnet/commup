@@ -1,0 +1,25 @@
+﻿@{
+    if (ViewBag.Title == null) { ViewBag.Title = "Tambah Stok " + ViewBag.Storagebasename + " Barang / Furniture"; }
+    Layout = "~/Views/Shared/_LayoutPrintable.cshtml";
+}
+
+@section includeTOP {
+    <!-- csslayout -->
+    <link href="@Url.Content("~/")Content/print_mutasi.css" rel="stylesheet" type="text/css" />
+}
+
+@{Html.RenderPartial("~/Views/Trnstockrev/Reportprint_data.cshtml");}
+@{Html.RenderPartial("~/Views/Trnstockrev/Reportprint_data_items.cshtml");}
+@{Html.RenderPartial("~/Views/Trnstockrev/Reportprint_data_footer.cshtml");}
+
+
+<br /><br /><br /><br />
+<div class="no-print"><a href="@Url.Action("Index", ViewBag.Controllername)" >Selesai</a></div>
+
+@section scripts {
+
+<script type="text/javascript">
+    window.print();
+</script>
+
+}

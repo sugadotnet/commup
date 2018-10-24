@@ -1,0 +1,179 @@
+﻿@model APPBASE.Models.EmployeedetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["MEDICAL_STORY10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        @if (ViewData.ModelState["MEDICAL_STORY20"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="MEDICAL_STORY1">Penyakit yang pernah diderita/alergi/penanganan khusus</label>
+
+            <div>
+                <input type="text" id="MEDICAL_STORY1" name="MEDICAL_STORY1" value="@Html.DisplayFor(model => model.MEDICAL_STORY1)" class="form-control" maxlength = "50" @vsReadonlyTextbox />
+                @if (ViewData.ModelState["MEDICAL_STORY11"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MEDICAL_STORY11")
+                        </label>
+                }
+                @if (ViewData.ModelState["MEDICAL_STORY12"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MEDICAL_STORY12")
+                        </label>
+                }
+            </div> <!-- MEDICAL_STORY1 -->
+
+            <div>
+                <input type="text" id="MEDICAL_STORY2" name="MEDICAL_STORY2" value="@Html.DisplayFor(model => model.MEDICAL_STORY2)" class="form-control" maxlength = "50" @vsReadonlyTextbox />
+                @if (ViewData.ModelState["MEDICAL_STORY21"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MEDICAL_STORY21")
+                        </label>
+                }
+                @if (ViewData.ModelState["MEDICAL_STORY22"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MEDICAL_STORY22")
+                        </label>
+                }
+            </div> <!-- MEDICAL_STORY2 -->
+
+
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["MUTATIONSTS_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="MUTATIONSTS_ID">Aktif/Tidak aktif</label>
+                <select id="MUTATIONSTS_ID" name="MUTATIONSTS_ID" class="form-control select2" data-placeholder="Select Aktif/Tidak aktif" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.EMPMUTATIONSTS)
+                    {
+
+                        if (Model.MUTATIONSTS_ID == item.ID) {<option selected value="@item.ID">@item.LOV_DESC</option> }
+                        else {<option value="@item.ID">@item.LOV_DESC</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["MUTATIONSTS_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MUTATIONSTS_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["MUTATIONSTS_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("MUTATIONSTS_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["EMPLSTS_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLSTS_ID">Status Kepegawaian</label>
+                <select id="EMPLSTS_ID" name="EMPLSTS_ID" class="form-control select2" data-placeholder="Select Status Kepegawaian" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.EMPLSTS)
+                    {
+
+                        if (Model.EMPLSTS_ID == item.ID) {<option selected value="@item.ID">@item.LOV_DESC</option> }
+                        else {<option value="@item.ID">@item.LOV_DESC</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["EMPLSTS_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLSTS_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLSTS_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLSTS_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["JOBTITLE_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="JOBTITLE_ID">Jabatan</label>
+                <select id="JOBTITLE_ID" name="JOBTITLE_ID" class="form-control select2" data-placeholder="Select Jabatan" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.JOBTITLE)
+                    {
+
+                        if (Model.JOBTITLE_ID == item.ID) {<option selected value="@item.ID">@item.LOV_DESC</option> }
+                        else {<option value="@item.ID">@item.LOV_DESC</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["JOBTITLE_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("JOBTITLE_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["JOBTITLE_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("JOBTITLE_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["EDU_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EDU_ID">Pendidikan Terakhir</label>
+                <select id="EDU_ID" name="EDU_ID" class="form-control select2" data-placeholder="Select Pendidikan Terakhir" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.EDUCATION)
+                    {
+
+                        if (Model.EDU_ID == item.ID) {<option selected value="@item.ID">@item.LOV_DESC</option> }
+                        else {<option value="@item.ID">@item.LOV_DESC</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["EDU_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EDU_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["EDU_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EDU_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

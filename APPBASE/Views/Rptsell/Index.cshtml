@@ -1,0 +1,203 @@
+﻿@model APPBASE.Models.ReportsellVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Laporan Penjualan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+@{int nNO = 0;}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myform" }))
+{
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+            <div class="input-group pull-right">
+                <select id="TRN_YEAR" name="TRN_YEAR" class="form-control select2" data-placeholder="Pilih Tahun" style="width: 20%;">
+                    @if (Model.YEAR_LIST != null)
+                    {
+                        foreach (var item in Model.YEAR_LIST)
+                        {
+
+                            if (Model.TRN_YEAR == item)
+                            {<option selected value="@item">@item</option> }
+                            else
+                            {<option value="@item">@item</option> }
+                        }
+                    }
+                    else
+                    {<option value="">Pilih Tahun</option>}
+                </select>
+                <div class="input-group-btn">
+                    <a href="@Url.Action("Rincian", "Rptsell", new { id = Model.TRN_YEAR })" class="btn btn-flat btn-sm btn-success" style="color:White;">
+                        <i class="fa fa-search"></i>  Lihat Detail
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <div class="row">
+            <hr />
+            <div class="col-sm-12 col-md-6">
+                <div> @{Html.RenderPartial("Index_data");} </div>
+            </div> <!-- End col -->
+
+            <div class="col-sm-12 col-md-6">
+                @{Html.RenderPartial("Index_chart_amt");}
+                <br /><br />
+                @{Html.RenderPartial("Index_chart_qty");}
+            </div> <!-- End col -->
+        </div> <!-- End row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+    
+<input type="hidden" id="YEAR" value="@Model.TRN_YEAR" />    
+<input type="hidden" id="AMT_1" value="@Model.DETAIL_CHART[1].AMT" />    
+<input type="hidden" id="AMT_2" value="@Model.DETAIL_CHART[2].AMT" />    
+<input type="hidden" id="AMT_3" value="@Model.DETAIL_CHART[3].AMT" />    
+<input type="hidden" id="AMT_4" value="@Model.DETAIL_CHART[4].AMT" />    
+<input type="hidden" id="AMT_5" value="@Model.DETAIL_CHART[5].AMT" />    
+<input type="hidden" id="AMT_6" value="@Model.DETAIL_CHART[6].AMT" />    
+<input type="hidden" id="AMT_7" value="@Model.DETAIL_CHART[7].AMT" />    
+<input type="hidden" id="AMT_8" value="@Model.DETAIL_CHART[8].AMT" />    
+<input type="hidden" id="AMT_9" value="@Model.DETAIL_CHART[9].AMT" />    
+<input type="hidden" id="AMT_10" value="@Model.DETAIL_CHART[10].AMT" />    
+<input type="hidden" id="AMT_11" value="@Model.DETAIL_CHART[11].AMT" />    
+<input type="hidden" id="AMT_12" value="@Model.DETAIL_CHART[12].AMT" />    
+    
+<input type="hidden" id="QTY_1" value="@Model.DETAIL_CHART[1].QTY" />    
+<input type="hidden" id="QTY_2" value="@Model.DETAIL_CHART[2].QTY" />    
+<input type="hidden" id="QTY_3" value="@Model.DETAIL_CHART[3].QTY" />    
+<input type="hidden" id="QTY_4" value="@Model.DETAIL_CHART[4].QTY" />    
+<input type="hidden" id="QTY_5" value="@Model.DETAIL_CHART[5].QTY" />    
+<input type="hidden" id="QTY_6" value="@Model.DETAIL_CHART[6].QTY" />    
+<input type="hidden" id="QTY_7" value="@Model.DETAIL_CHART[7].QTY" />    
+<input type="hidden" id="QTY_8" value="@Model.DETAIL_CHART[8].QTY" />    
+<input type="hidden" id="QTY_9" value="@Model.DETAIL_CHART[9].QTY" />    
+<input type="hidden" id="QTY_10" value="@Model.DETAIL_CHART[10].QTY" />    
+<input type="hidden" id="QTY_11" value="@Model.DETAIL_CHART[11].QTY" />    
+<input type="hidden" id="QTY_12" value="@Model.DETAIL_CHART[12].QTY" />    
+    
+}
+
+@section scripts {
+<script src="@Url.Content("~/")Content/AdminLTE/plugins/chart/Chart.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var label_list = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                     "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    //var data_list = [100, 110, 120, 130, 140, 150, 160, 170, $("#AMT_9").val(), 190, 200, 210];
+    
+    //Amount
+    var data_list = [];
+    data_list[0] = $("#AMT_1").val();
+    data_list[1] = $("#AMT_2").val();
+    data_list[2] = $("#AMT_3").val();
+    data_list[3] = $("#AMT_4").val();
+    data_list[4] = $("#AMT_5").val();
+    data_list[5] = $("#AMT_6").val();
+    data_list[6] = $("#AMT_7").val();
+    data_list[7] = $("#AMT_8").val();
+    data_list[8] = $("#AMT_9").val();
+    data_list[9] = $("#AMT_10").val();
+    data_list[10] = $("#AMT_11").val();
+    data_list[11] = $("#AMT_12").val();
+    //Quantity
+    var data_list_qty = [];
+    data_list_qty[0] = $("#QTY_1").val();
+    data_list_qty[1] = $("#QTY_2").val();
+    data_list_qty[2] = $("#QTY_3").val();
+    data_list_qty[3] = $("#QTY_4").val();
+    data_list_qty[4] = $("#QTY_5").val();
+    data_list_qty[5] = $("#QTY_6").val();
+    data_list_qty[6] = $("#QTY_7").val();
+    data_list_qty[7] = $("#QTY_8").val();
+    data_list_qty[8] = $("#QTY_9").val();
+    data_list_qty[9] = $("#QTY_10").val();
+    data_list_qty[10] = $("#QTY_11").val();
+    data_list_qty[11] = $("#QTY_12").val();
+
+    var ctxline = document.getElementById("sales-chart-line").getContext('2d');
+    var ctxline_qty = document.getElementById("sales-chart-line-qty").getContext('2d');
+
+    //Amount
+    var myctxline = new Chart(ctxline, {
+        type: 'line',
+        data: {
+            labels: label_list,
+            datasets: [{
+                label: 'Trend Penjualan Tahun ' + $("#YEAR").val(),
+                data: data_list,
+                backgroundColor: 'rgba(54, 162, 235, 1)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                lineTension: 0,
+                pointBorderWidth: 8,
+                fill: false,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    //Quantity
+    var myctxline_qty = new Chart(ctxline_qty, {
+        type: 'line',
+        data: {
+            labels: label_list,
+            datasets: [{
+                label: 'Trend Jumlah Barang terjual Tahun ' + $("#YEAR").val(),
+                data: data_list_qty,
+                backgroundColor: 'rgba(54, 162, 235, 1)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                lineTension: 0,
+                pointBorderWidth: 8,
+                fill: false,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        var $TRN_YEAR = $("#TRN_YEAR");
+        var $myform = $("#myform");
+        $TRN_YEAR.select2();
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $TRN_YEAR.on('select2:select', function (e) {
+            // Do something
+            $myform.submit();
+        }); //end event
+    }); //End $(document).ready
+</script>
+
+}

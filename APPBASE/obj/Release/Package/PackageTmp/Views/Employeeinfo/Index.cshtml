@@ -1,0 +1,164 @@
+﻿@model APPBASE.Models.EmployeeinfoVM
+@{
+    ViewBag.Title = "Informasi Cuti Besar Karyawan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Kriteria Pencarian Karyawan</h2>
+
+@using (Html.BeginForm()) { 
+    <div>
+        <div>
+            <div>
+                @Html.TextBoxFor(model => model.SEARCHVALUE_DEPT, new { id = "SEARCHVALUE_DEPT" })
+                <input type="button" id="cmdLookupDEPT" name="cmdLookupDEPT" value="Pilih Departemen" />
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.SEARCHVALUE_EMP, new { id = "SEARCHVALUE_EMP" })
+                <input type="button" id="cmdLookupEMP" name="cmdLookupEMP" value="Pilih Karyawan" />
+            </div>
+        </div>
+
+        <div>
+            <div>
+                @Html.CheckBoxFor(model => model.SEARCHVALUE_ISCB, new { id = "SEARCHVALUE_ISCB" }) Filter yang dapat cuti besar
+                <div>@Html.HiddenFor(model => model.SEARCHVALUE_ISCB, new { id = "SEARCHVALUE_ISCBX" })</div>
+            </div>
+            <div id="grpCutiBesar">
+                @Html.DropDownListFor(model => model.SEARCHVALUE_PERIOD_SELECTED, Model.SEARCHVALUE_PERIOD)
+                @Html.ValidationMessageFor(model => model.SEARCHVALUE_PERIOD_SELECTED)
+                @Html.TextBoxFor(model => model.SEARCHVALUE_DT, new { id = "SEARCHVALUE_DT" })
+                @Html.ValidationMessageFor(model => model.SEARCHVALUE_DT)
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Tampilkan" id="cmdSubmit" name="cmdSubmit" />
+            <input type="button" value="Reset" id="cmdReset" name="cmdReset" />
+        </div>
+    </div>
+}
+
+<div id="DataContent">
+@if (Model.EmployeeinfoCB != null)
+{
+
+    
+    if (Model.EmployeeinfoCB.Count <= 0)
+    {
+        
+        <table>
+            <tr>
+                <td>@{Html.RenderPartial("_NotfoundPartial");}</td>
+            </tr>
+        </table>
+    }
+    else
+    { 
+<table>
+    <tr>
+        <th>
+            <div>@Html.DisplayNameFor(model => model.EmployeeinfoCB[0].DEPT_NM)</div>
+            <div>@Html.DisplayNameFor(model => model.EmployeeinfoCB[0].JOB_TITLE_NM)</div>
+        </th>
+        <th>
+            <div>@Html.DisplayNameFor(model => model.EmployeeinfoCB[0].JOIN_DT)</div>
+            <div>@Html.DisplayNameFor(model => model.EmployeeinfoCB[0].RES_NM1)</div>
+        </th>
+
+        <th></th>
+    </tr>
+@foreach (var item in Model.EmployeeinfoCB)
+{
+    <tr>
+        <td>
+            <div>@Html.DisplayFor(modelItem => item.DEPT_NM)</div>
+            <div>@Html.DisplayFor(modelItem => item.JOB_TITLE_NM)</div>
+        </td>
+        <td>
+            @if ((item.JOIN_DT.ToString() == "") || (item.JOIN_DT == null))
+            {
+                <div>-</div>
+            }
+            else
+            { 
+                <div>@Html.DisplayFor(modelItem => item.JOIN_DT)</div>
+            }
+            <div>@Html.DisplayFor(modelItem => item.RES_NM1)</div>
+        </td>
+        <td>
+            @Html.ActionLink("Informasi Detil", "Details", new { id = item.RUID })
+        </td>
+    </tr>
+}
+</table>
+    }
+}
+</div>
+
+<div id="DialogLookup"><div id="DialogLookupContent"></div></div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        //Dialog Lookup
+        initDlgLookUp('#DialogLookup');
+        //Date Picker Field
+        initDatePickerShortV2("#SEARCHVALUE_DT");
+        //Hide/show filter cuti besar
+        var isCB = $("#SEARCHVALUE_ISCBX").val();
+        if (isCB.toLocaleString() == 'true') {
+            $("#grpCutiBesar").show();
+        } else {
+            $("#grpCutiBesar").hide();
+        } //End if
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $("#SEARCHVALUE_ISCB").change(function () {
+            if (this.checked) {
+                $("#grpCutiBesar").show();
+            } else {
+                $("#grpCutiBesar").hide();
+            } //End if
+        });
+
+        //Command LookUp [Department=SEARCHVALUE]
+        $("#cmdLookupDEPT").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup('Lookup/ShowDept', '', vaSearchValue,
+                       '', '', 'SEARCHVALUE_DEPT');
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Employee=SEARCHVALUE]
+        $("#cmdLookupEMP").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup('Lookup/ShowEmpCB', '', vaSearchValue,
+                       '', '', 'SEARCHVALUE_EMP');
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            $("#SEARCHVALUE_DEPT").val("");
+            $("#SEARCHVALUE_EMP").val("");
+            $("#SEARCHVALUE_DT").val("");
+            $("#DataContent").text("");
+            $('#SEARCHVALUE_ISCB').prop('checked', false);
+            $("#grpCutiBesar").hide();
+            return true;
+        });
+    });              //End $(document).ready
+</script>
+}
+

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Appname = "CPAR Online";
+}
+
+@using APPBASE.Helpers
+@using APPBASE.Svcapp
+@using APPBASE.Svcbiz
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>@ViewBag.Appname | @ViewBag.Title</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+        @Styles.Render("~/Content/cssLayout")
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            @Scripts.Render("~/bundles/modernizrAdminLTE")
+        <![endif]-->
+
+        @Scripts.Render("~/bundles/modernizr")
+        @RenderSection("includeTOP", required: false)
+    </head>
+    <body class="skin-blue">
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Main content -->
+                <section class="content @ViewBag.Print">
+                    @RenderBody()
+                </section><!-- /.content -->
+            </div>
+        </div>
+
+        @{Html.RenderPartial("_PartialJSVAR");}
+        @Scripts.Render("~/bundles/JSLayout")
+        @RenderSection("includeBOTTOM", required: false)
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

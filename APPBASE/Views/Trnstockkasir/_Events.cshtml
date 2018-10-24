@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+        inputInteger();
+        inputDecimal();
+        inputDecimalPct();
+        $("#TRN_DT").focus(function () {
+            $(this).select();
+        });
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".TRND_QTY").focus(function () {
+            this.select();
+        });
+        $(".data-mask-decimal").focusout(function () {
+            formatNumberDecimal("#" + $(this).attr("id"));
+        });
+        $(".data-mask-integer-percentage").focusout(function () {
+            formatNumberDecimal("#" + $(this).attr("id"));
+        });
+
+
+    });        //End $(document).ready
+</script>
+

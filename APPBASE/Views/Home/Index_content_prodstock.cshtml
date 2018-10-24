@@ -1,0 +1,97 @@
+﻿@model APPBASE.Models.DashboardVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+<div class="row">
+
+    @if ((hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_ADM) ||
+        (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_SLS))
+    {
+        <div class="col-sm-12 col-md-3">
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>
+                        @Html.DisplayFor(model => model.PRODSTOCK_DISPLAY)
+                    </h3>
+                    <p>
+                        Barang/Furniture Display
+                    </p>
+                </div>
+                @if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_SLS)
+                {
+                    <a href="@Url.Action("Index", "Trnstockdisplay")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logbook", "Trnstockdisplay")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+            </div> <!-- end small-box -->
+        </div> <!-- end col -->
+    }
+
+    @if ((hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_ADM) ||
+        (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_GDGA))
+    {
+        <div class="col-sm-12 col-md-3">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>
+                        @Html.DisplayFor(model => model.PRODSTOCK_GUDANGA)
+                    </h3>
+                    <p>
+                        Barang/Furniture Gudang Atas
+                    </p>
+                </div>
+
+                @if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_GDGA)
+                {
+                    <a href="@Url.Action("Index", "Trnstockgudang_a")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logbook", "Trnstockgudang_a")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+            </div> <!-- end small-box -->
+        </div> <!-- end col -->
+    }
+
+    @if ((hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_ADM) ||
+        (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_GDGB))
+    {
+        <div class="col-sm-12 col-md-3">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>
+                        @Html.DisplayFor(model => model.PRODSTOCK_GUDANGB)
+                    </h3>
+                    <p>
+                        Barang/Furniture Gudang Bawah
+                    </p>
+                </div>
+
+                @if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_GDGB)
+                {
+                    <a href="@Url.Action("Index", "Trnstockgudang_b")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logbook", "Trnstockgudang_b")" class="small-box-footer">
+                        Tampilkan <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                }
+            </div> <!-- end small-box -->
+        </div> <!-- end col -->
+    }
+
+</div>
+

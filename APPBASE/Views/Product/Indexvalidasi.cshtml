@@ -1,0 +1,77 @@
+﻿
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+
+@{
+    ViewBag.Title = "Validasi Produk Baru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Indexvalidasi", "Product", FormMethod.Post, new { id = "Validate_product" })) {
+
+    <input type="hidden" id="ID" name="ID" value="@ViewBag.ID" />    
+    <div class="box box-info">
+        <div class="box-header">
+            <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            @{Html.RenderPartial("Indexvalidasi_data");}
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+}
+
+<!-- Modal -->
+<div class="modal fade" id="DialogConfirm" tabindex="-1" role="dialog" aria-labelledby="DialogConfirmTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-aqua">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Konfirmasi</h4>
+      </div>
+      <div class="modal-body">
+        <h1>Apakah data sudah benar?</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="cmdConfirmYes" class="btn btn-flat btn-primary">Yes</button>
+        <button type="button" id="cmdConfirmNo" class="btn btn-flat btn-danger">No</button>
+        <button type="button" id="cmdConfirmCancel" class="btn btn-flat btn-warning" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>                        
+
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+        var $linkID = $("#ID");
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".cmdValidate").click(function () {
+            $linkID.val("");
+            var sID = $(this).attr("value");
+            $linkID.val(sID);
+            //$("#Validate_product").submit();
+        })
+        $("#cmdConfirmYes").click(function () {
+            $("#Validate_product").submit();
+        })
+        $("#cmdConfirmNo").click(function () {
+            window.location.replace("@Url.Content("~/")Productnew/Edit/" + $linkID.val());
+        })
+        $("#cmdConfirmCancel").click(function () {
+            $linkID.val("");
+        })
+
+    });      //End $(document).ready
+</script>
+
+}

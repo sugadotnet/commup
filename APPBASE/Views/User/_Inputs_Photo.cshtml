@@ -1,0 +1,47 @@
+﻿@model APPBASE.Models.UserdetailHQVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-sm-12">
+        @if (Model != null)
+        {
+            <img id="imgUSER_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_User(Model.USER_IMG)" class="img-thumbnail" alt="Foto" />
+        }
+        else
+        {
+            <img id="imgUSER_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_UserNA()" class="img-thumbnail" alt="Foto" />
+        }
+        @if (ViewData.ModelState["USER_IMG0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+        <div class="form-group @vsErrClass">
+            @Html.HiddenFor(model => model.USER_IMG)
+            @if (ViewData.ModelState["USER_IMG1"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USER_IMG1")
+                </label>
+            }
+            @if (ViewData.ModelState["USER_IMG2"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("USER_IMG2")
+                </label>
+            }
+        </div>
+        @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)||(ViewBag.CRUD_type == hlpFlags_CRUDOption.UPDATE)) {
+            <!-- Upload Photo btn -->
+            <button type="button" id="cmdUSER_IMG" name="cmdUSER_IMG" class="btn btn-primary btn-flat btn-block" style="margin-top:2px;">Upload Photo</button>
+        }
+        <span id="FileContainerUSER_IMG"><input type="file" id="FileUSER_IMG" name="FileUSER_IMG" accept="image/*; capture=camera" /></span>
+    </div><!-- /.col (LEFT) -->
+</div><!-- /.row -->
+

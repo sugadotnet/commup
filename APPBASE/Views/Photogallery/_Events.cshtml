@@ -1,0 +1,25 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        UPLOAD PHOTO PHOTO_IMG
+        =========================================*/
+        $("#FileContainerPHOTO_IMG").hide(); //Optional if contains upload image field(s)
+        $("#FilePHOTO_IMG").on('change', function () {
+            previewImage(this, "#imgPHOTO_IMG");
+        });
+        $("#cmdPHOTO_IMG").click(function () {
+            $("#FilePHOTO_IMG").click();
+        }); //End  $("#cmdPHOTO_IMG").click
+
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+
+    }); //End $(document).ready
+</script>
+

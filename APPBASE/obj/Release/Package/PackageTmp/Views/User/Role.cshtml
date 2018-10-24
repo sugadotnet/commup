@@ -1,0 +1,71 @@
+﻿@model APPBASE.Models.UserlistVM
+
+@{
+    ViewBag.Title = "Pengaturan Hak Akses User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>@ViewBag.Title</legend>
+
+    <div>
+        @{Html.RenderPartial("_Details");}
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ROLE_NM)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ROLE_NM, new { id = "ROLE_NM" })
+            <input type="button" id="cmdLookupROLE_NM" name="cmdLookupROLE_NM" value="Pilih Hak Akses" />
+
+            @Html.ValidationMessageFor(model => model.USR_ID)
+
+            @Html.HiddenFor(model => model.ROLE_RUID, new { id = "ROLE_RUID" })
+        </div>
+
+    </div>
+    <div></div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Simpan" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+<div id="DialogLookup"><div id="DialogLookupContent"></div></div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        //Dialog Lookup
+        initDlgLookUp('#DialogLookup');
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [Employee=]
+        $("#cmdLookupROLE_NM").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup_LoadSingle('Lookup/ShowRole_getDatalist', '', vaSearchValue,
+                                  'Role/_Role_showDatalist', 'RSLTDATA_TAG',
+                                  'ROLE_RUID', '', 'ROLE_NM');
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            return true;
+        });
+    }); //End $(document).ready
+</script>
+
+}

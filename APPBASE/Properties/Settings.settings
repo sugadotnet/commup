@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="APPBASE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DB01TYPE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">iaptJqibTGVZ0bjGyvCI7vpRs9g==</Value>
+    </Setting>
+    <Setting Name="DB01SERVER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tArWxI8HC/y1VSZlsj9jChWWMbfGEot90/vWkauJtbM7R9GI=</Value>
+    </Setting>
+    <Setting Name="DB01NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">OWfJtX82Z19nUd9dAh1pJfj9O0g==</Value>
+    </Setting>
+    <Setting Name="DB01USERID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ihsqIVOoH1SbosZsEyFYs3aLiVg==</Value>
+    </Setting>
+    <Setting Name="DB01PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pNkkrm2e1Uqb7yLZXzRN7lvuUOQ==</Value>
+    </Setting>
+    <Setting Name="DB02TYPE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">iaptJqibTGVZ0bjGyvCI7vpRs9g==</Value>
+    </Setting>
+    <Setting Name="DB02SERVER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qjsNbaPy4UeTwOrrHVyv9TFpcig==</Value>
+    </Setting>
+    <Setting Name="DB02NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">OWfJtX82Z19nUd9dAh1pJfj9O0g==</Value>
+    </Setting>
+    <Setting Name="DB02USERID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ihsqIVOoH1SbosZsEyFYs3aLiVg==</Value>
+    </Setting>
+    <Setting Name="DB02PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pNkkrm2e1Uqb7yLZXzRN7lvuUOQ==</Value>
+    </Setting>
+    <Setting Name="DB03TYPE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DB03SERVER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DB03NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DB03USERID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DB03PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DBNO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

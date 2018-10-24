@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Informasi User</legend>
+    @{Html.RenderPartial("_Details");}
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RUID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

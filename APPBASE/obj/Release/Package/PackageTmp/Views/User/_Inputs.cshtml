@@ -1,0 +1,18 @@
+﻿@model APPBASE.Models.UserlistVM
+
+        @Html.HiddenFor(model => model.RES_RUID, new { id = "RES_RUID" })
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USR_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USR_ID)
+            @Html.ValidationMessageFor(model => model.USR_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USR_NM1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USR_NM1)
+            @Html.ValidationMessageFor(model => model.USR_NM1)
+        </div>

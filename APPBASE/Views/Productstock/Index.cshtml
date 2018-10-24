@@ -1,0 +1,86 @@
+﻿@model APPBASE.Models.ProductstockVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Stok " + ViewBag.Storagebasename + " Barang / Furniture";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}   
+@{int nCount = 0;}
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE) {
+      Html.RenderPartial("_PartialConfirmSaved"); 
+}
+
+@using (Html.BeginForm()) {
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>Kode</th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="5" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model.LIST_INDEX)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PROD_CODE)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PROD_NAME)</td>
+                        <td>@Html.DisplayFor(modelItem => item.STOCK_QTY) @Html.DisplayFor(modelItem => item.UOM_CODE)</td>
+                        <td>
+                            @if (item.PROD_IMAGE != null)
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(item.PROD_IMAGE)" class="img-thumbnail img-wide-sm" alt="Foto" />
+                            }
+                            else
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+                            }
+                        </td>
+                    </tr>
+                            nCount++;
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+}
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

@@ -1,0 +1,128 @@
+﻿@model APPBASE.Models.Cutibesar_HistVM
+@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cuti Besar Karyawan</h2>
+
+<p>
+    @Html.ActionLink("Proses Cuti Besar", "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{ 
+    <div>
+        <div>
+            <div>
+                <input type="text" id="SEARCHVALUE_CBTYPE_NM" name="SEARCHVALUE_CBTYPE_NM" />
+                @Html.HiddenFor(model => model.SEARCHVALUE_CBTYPE, new { id = "SEARCHVALUE_CBTYPE" })
+                <input type="button" id="cmdLookupCBTYPE" name="cmdLookupCBTYPE" value="Pilih Jenis Cuti Besar" />
+            </div>
+            <div>
+                <input type="text" id="SEARCHVALUE_EMP_NM" name="SEARCHVALUE_EMP_NM" />
+                @Html.HiddenFor(model => model.SEARCHVALUE_EMP, new { id = "SEARCHVALUE_EMP" })
+                <input type="button" id="cmdLookupEMP" name="cmdLookupEMP" value="Pilih Karyawan" />
+            </div>
+        </div>
+
+        <div>
+            <input type="submit" value="Tampilkan" id="cmdSubmit" name="cmdSubmit" />
+            <input type="button" value="Reset" id="cmdReset" name="cmdReset" />
+        </div>
+    </div>
+}
+
+@if (Model != null)
+{
+    <span></span>
+    if (Model.Cutibesar_HistlistVM != null)
+    {
+    
+    <div>Departemen : @Html.DisplayFor(model => model.RES_DEPT_NM)</div>
+    <div>Jabatan : @Html.DisplayFor(model => model.RES_JOB_TITLE_NM)</div>
+    <div>Tanggal Bergabung : @Html.ValueFor(model => model.RES_JOIN_DT, "{0:" + hlpConfig.ConstantaInfo.FMT_DTSHT + "}")</div>
+    <div>Jenis Cuti Besar : @Html.DisplayFor(model => model.LEAVE_NM)</div>
+    <div>Sisa Cuti : @Html.DisplayFor(model => model.LEAVE_BAL)</div>
+    
+<table>
+    <tr>
+        <th>
+            <div>Tanggal</div>
+            <div>Pengajuan</div>
+        </th>
+        <th>Jumlah Hari</th>
+        <th>Dari Tanggal</th>
+        <th>Sd Tanggal</th>
+    </tr>
+    @foreach (var item in Model.Cutibesar_HistlistVM)
+    {
+    <tr>
+        <td>@Html.ValueFor(modelItem => item.LEAVE_DT, "{0:" + hlpConfig.ConstantaInfo.FMT_DTSHT + "}")</td>
+        <td>@Html.DisplayFor(modelItem => item.LEAVE_NUM)</td>
+        <td>@Html.ValueFor(modelItem => item.LEAVEFR_DT, "{0:" + hlpConfig.ConstantaInfo.FMT_DTSHT + "}")</td>
+        <td>@Html.ValueFor(modelItem => item.LEAVETO_DT, "{0:" + hlpConfig.ConstantaInfo.FMT_DTSHT + "}")</td>
+    </tr>
+    
+    }
+</table>
+    }
+}
+else {
+    Html.RenderPartial("_NotfoundPartial");
+}
+
+<div id="DialogLookup"><div id="DialogLookupContent"></div></div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        //Dialog Lookup
+        initDlgLookUp('#DialogLookup');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [Employee=SEARCHVALUE]
+        $("#cmdLookupCBTYPE").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup('Lookup/ShowCBType', '', vaSearchValue,
+                       'SEARCHVALUE_CBTYPE', '', 'SEARCHVALUE_CBTYPE_NM');
+        }); //End  $("#btnLookup").click
+        //Command LookUp [Employee=SEARCHVALUE]
+        $("#cmdLookupEMP").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup('Lookup/ShowEmpCB', '', vaSearchValue,
+                       'SEARCHVALUE_EMP', '', 'SEARCHVALUE_EMP_NM');
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            $("#SEARCHVALUE_DEPT").val("");
+            $("#SEARCHVALUE_EMP").val("");
+            $("#SEARCHVALUE_DT").val("");
+            $("#DataContent").text("");
+            $('#SEARCHVALUE_ISCB').prop('checked', false);
+            $("#grpCutiBesar").hide();
+            return true;
+        });
+    });              //End $(document).ready
+</script>
+
+}
+
+

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "System Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="error-page">
+    <h2 class="headline text-info"></h2>
+    <div class="error-content">
+            @if (ViewBag.ERRMSG !=null) {
+                  <p></p>
+
+                <div class="alert alert-danger">
+                    <b>System Error</b> @ViewBag.ERRMSG
+                </div>
+
+            }
+        
+        <p>
+        <h3><i class="fa fa-warning text-yellow"></i> Maaf terjadi kesalahan system.</h3>
+            Sementara anda bisa kembali ke <a href="@Url.Action("Index", "Home")">halaman utama</a> atau silahkan menghubungi admin.
+        </p>
+    </div><!-- /.error-content -->
+</div><!-- /.error-page -->
+
+@section scripts {
+}
+

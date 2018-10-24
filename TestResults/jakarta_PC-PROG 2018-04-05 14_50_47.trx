@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="7f963fbf-8cc1-4b1d-8848-cafdec2f8ecf" name="jakarta@PC-PROG 2018-04-05 14:50:47" runUser="PC-PROG\jakarta" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="2b31ee0e-7d2c-4b5a-91e8-919d9b483623">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="E:\WRK\WORK\GITLab\HDP\PRODUKSTOK\Src\APPBASE\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="jakarta_PC-PROG 2018-04-05 14_50_47">
+      <DeploymentItem filename="E:\WRK\WORK\GITLab\HDP\PRODUKSTOK\Src\APPBASE\APPBASE\bin\APPBASE.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2018-04-05T14:50:47.4946181+07:00" queuing="2018-04-05T14:50:47.5406207+07:00" start="2018-04-05T14:50:47.5506213+07:00" finish="2018-04-05T14:50:47.7896350+07:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="testBarcode_notNull" storage="e:\wrk\work\gitlab\hdp\produkstok\src\appbase\unittest\bin\debug\unittest.dll" id="58293536-13b4-dfc4-7971-f78e11ba27c8">
+      <Execution id="507e846f-7a0a-4091-8514-c816eee875a9" />
+      <TestMethod codeBase="E:/WRK/WORK/GITLab/HDP/PRODUKSTOK/Src/APPBASE/Unittest/bin/Debug/Unittest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Unittest.UnitTest1, Unittest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="testBarcode_notNull" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="58293536-13b4-dfc4-7971-f78e11ba27c8" executionId="507e846f-7a0a-4091-8514-c816eee875a9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="507e846f-7a0a-4091-8514-c816eee875a9" testId="58293536-13b4-dfc4-7971-f78e11ba27c8" testName="testBarcode_notNull" computerName="PC-PROG" duration="00:00:00.0170751" startTime="2018-04-05T14:50:47.5576217+07:00" endTime="2018-04-05T14:50:47.7756342+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="507e846f-7a0a-4091-8514-c816eee875a9">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,0 +1,23 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+<!-- Confirm Validate Failed -->
+@if (ViewBag.CRUDSavedOrDeleteFaield == valFLAG.FLAG_TRUE) {
+<div class="alert alert-danger alert-dismissable">
+    <i class="fa fa-warning"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <b>Perhatian!</b> Data gagal di validasi
+
+    @if (ViewData.ModelState.Count > 0) {
+        <ul>
+            @foreach (var item in ViewData.ModelState)
+	        {
+                if (item.Key != "ID") {
+                    <li>@Html.ValidationMessage(item.Key)</li>
+                }
+	        }
+        </ul>
+    }
+
+</div>
+}
+

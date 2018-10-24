@@ -1,0 +1,47 @@
+﻿@model APPBASE.Models.ProductnewVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-sm-12">
+        @if (Model != null)
+        {
+            <img id="imgPRODNEW_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(Model.PRODNEW_IMAGE)" class="img-thumbnail" alt="Foto" />
+        }
+        else
+        {
+            <img id="imgPRODNEW_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+        }
+        @if (ViewData.ModelState["PRODNEW_IMAGE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+        <div class="form-group @vsErrClass">
+            @Html.HiddenFor(model => model.PRODNEW_IMAGE)
+            @if (ViewData.ModelState["PRODNEW_IMAGE1"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_IMAGE1")
+                </label>
+            }
+            @if (ViewData.ModelState["PRODNEW_IMAGE2"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_IMAGE2")
+                </label>
+            }
+        </div>
+        @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)||(ViewBag.CRUD_type == hlpFlags_CRUDOption.UPDATE)) {
+            <!-- Upload Photo btn -->
+            <button type="button" id="cmdPRODNEW_IMAGE" name="cmdPRODNEW_IMAGE" class="btn btn-primary btn-flat btn-block" style="margin-top:2px;">Upload Photo</button>
+        }
+        <span id="FileContainerPRODNEW_IMAGE"><input type="file" id="FilePRODNEW_IMAGE" name="FilePRODNEW_IMAGE" accept="image/*; capture=camera" /></span>
+    </div><!-- /.col (LEFT) -->
+</div><!-- /.row -->

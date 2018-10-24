@@ -1,0 +1,50 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        UPLOAD PHOTO USER_IMG
+        =========================================*/
+        $("#FileContainerUSER_IMG").hide(); //Optional if contains upload image field(s)
+        $("#FileUSER_IMG").on('change', function () {
+            previewImage(this, "#imgUSER_IMG");
+        });
+        $("#cmdUSER_IMG").click(function () {
+            $("#FileUSER_IMG").click();
+        }); //End  $("#cmdUSER_IMG").click
+
+        /*=========================================
+        EVENTS LOOKUP
+        =========================================*/
+        //Command LookUp [ROLE_ID]
+        $("#cmdLookupROLE_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'ROLE_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'ROLE_DISPLAY_NAME'; //DESC
+            showLookup('Lookup/ShowRoleHQ', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [RES_ID]
+        $("#cmdLookupRES_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'RES_ID'; //ID
+            vaTargetTag[1] = 'RES_NIP';   //CD
+            vaTargetTag[2] = 'RES_NAME'; //DESC
+
+            vaTargetTag[3] = 'JOBTITLE_DESC'; //DESC
+            showLookup('Lookup/ShowEmployee', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+
+    }); //End $(document).ready
+</script>
+

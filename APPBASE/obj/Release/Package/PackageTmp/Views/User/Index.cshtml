@@ -1,0 +1,48 @@
+﻿@model IEnumerable<APPBASE.Models.UserlistVM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div>@Html.DisplayNameFor(model => model.BP_STS_NM) : @Html.DisplayFor(modelItem => item.BP_STS_NM)</div>
+            <div>@Html.DisplayFor(modelItem => item.USR_NM1)</div>
+            <div>@Html.DisplayFor(modelItem => item.DEPT_NM)</div>
+            <div>@Html.DisplayFor(modelItem => item.JOB_TITLE_NM)</div>
+            <div>@Html.DisplayFor(modelItem => item.RES_NM1)</div>
+        </td>
+        <td>
+            @if (item.BP_STS != APPBASE.Svcapp.valFLAG.FLAG_INACTIVE){
+                <span>
+                @Html.ActionLink("Rubah", "Edit", new { id=item.RUID }) |
+                @Html.ActionLink("Detil", "Details", new { id=item.RUID }) |
+                @Html.ActionLink("Hapus", "Delete", new { id=item.RUID })
+                </span>
+            }
+
+            @if (item.BP_STS == APPBASE.Svcapp.valFLAG.FLAG_INACTIVE){ @Html.ActionLink("Aktifkan", "Activate", new { id = item.RUID }) }
+            else{
+                @Html.ActionLink("Non Aktifkan", "Deactivate", new { id = item.RUID })
+                @Html.ActionLink("Hak Akses", "Role", new { id = item.RUID })
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

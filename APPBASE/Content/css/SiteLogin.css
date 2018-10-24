@@ -1,0 +1,10 @@
+﻿.form-box .header {
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0px -3px 0px rgba(0, 0, 0, 0.2) inset;
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 300;
+    color: #FFF;
+    background: none repeat scroll 0% 0% #00A65A;
+}

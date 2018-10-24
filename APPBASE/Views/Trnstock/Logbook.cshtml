@@ -1,0 +1,98 @@
+﻿@model IEnumerable<APPBASE.Models.TrnstockdVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Logbook " + ViewBag.IndexActionTitle + " " + ViewBag.Storagebasename;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}   
+@{int nCount = 0;}
+
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE) {
+      Html.RenderPartial("_PartialConfirmSaved"); 
+}
+
+@using (Html.BeginForm()) {
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Kode</th>
+                    <th>Nama Barang</th>
+                    <th>Keterangan</th>
+                    <th>Masuk</th>
+                    <th>Keluar</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="5" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.TRN_DT)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PROD_CODE)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PROD_NAME)</td>
+                        <td>
+                            <p>@Html.DisplayFor(modelItem => item.TRND_DESC)</p>
+                        </td>
+                        <td>
+                            @if (item.STORAGE_TARGETID == ViewBag.STORAGE_ID) {
+                                <span>@Html.DisplayFor(modelItem => item.TRND_QTY) @Html.DisplayFor(modelItem => item.UOM_CODE)</span>
+                              }
+                        </td>
+                        <td>
+                            @if (item.STORAGE_BASEID == ViewBag.STORAGE_ID) {
+                                <span>@Html.DisplayFor(modelItem => item.TRND_QTY) @Html.DisplayFor(modelItem => item.UOM_CODE)</span>
+                              }
+                        </td>
+                        <td>
+                            @if (item.PROD_IMAGE != null)
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(item.PROD_IMAGE)" class="img-thumbnail img-wide-sm" alt="Foto" />
+                            }
+                            else
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+                            }
+                        </td>
+                    </tr>
+                            nCount++;
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+}
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

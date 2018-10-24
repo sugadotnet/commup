@@ -1,0 +1,25 @@
+﻿@model APPBASE.Models.ProductstockVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div>
+    <label for="PROD_PRICE_BASE">Foto Barang</label>
+    @if (Model != null)
+    {
+        <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(Model.PROD_IMAGE)" class="img-thumbnail" alt="Foto" />
+    }
+    else
+    {
+        <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+    }
+    @if (ViewData.ModelState["PROD_IMAGE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+</div><!-- /.col (LEFT) -->

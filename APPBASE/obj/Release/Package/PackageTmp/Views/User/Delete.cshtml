@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Hapus User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hapus user</h2>
+
+<h3>Apakah anda yakin mau menghapus user?</h3>
+<fieldset>
+    <legend>Hapus User</legend>
+    @{Html.RenderPartial("_Details");}
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<APPBASE.Models.Cutibesar_info>
+
+@{
+    ViewBag.Title = "Cutibesar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>History Cutibesar</h2>
+
+<div>Departemen        : @Html.DisplayNameFor(model => model.RES_DEPT_NM)</div>
+<div>Nama              : @Html.DisplayNameFor(model => model.RES_NM)</div>
+<div>Jabatan           : @Html.DisplayNameFor(model => model.RES_JOB_TITLE_NM)</div>
+<div>tanggal bergabung : @Html.DisplayNameFor(model => model.RES_JOIN_DT)</div>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RSEQNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LEAVE_DT)
+            @Html.DisplayNameFor(model => model.LEAVEPBLSH_DT)
+            @Html.DisplayNameFor(model => model.LEAVEAPV_DT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LEAVEFR_DT)
+            @Html.DisplayNameFor(model => model.LEAVETO_DT)
+            @Html.DisplayNameFor(model => model.LEAVE_VAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LEAVE_NM)
+            @Html.DisplayNameFor(model => model.LEAVE_ADDRESS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOTES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REPLRES_NM)
+            @Html.DisplayNameFor(model => model.REPLRES_JOB_TITLE_NM)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.APVRES_NM)
+            @Html.DisplayNameFor(model => model.APVRES_JOB_TITLE_NM)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.KNOWNBYRES_NM)
+            @Html.DisplayNameFor(model => model.KNOWNBYRES_DEPT_NM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RSEQNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LEAVE_DT)
+            @Html.DisplayFor(modelItem => item.LEAVEPBLSH_DT)
+            @Html.DisplayFor(modelItem => item.LEAVEAPV_DT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LEAVEFR_DT)
+            @Html.DisplayFor(modelItem => item.LEAVETO_DT)
+            @Html.DisplayFor(modelItem => item.LEAVE_VAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LEAVE_NM)
+            @Html.DisplayFor(modelItem => item.LEAVE_ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOTES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REPLRES_NM)
+            @Html.DisplayFor(modelItem => item.REPLRES_JOB_TITLE_NM)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.APVRES_NM)
+            @Html.DisplayFor(modelItem => item.APVRES_JOB_TITLE_NM)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.KNOWNBYRES_NM)
+            @Html.DisplayFor(modelItem => item.KNOWNBYRES_DEPT_NM)
+        </td>
+    </tr>
+}
+
+</table>

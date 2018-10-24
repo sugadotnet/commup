@@ -1,0 +1,81 @@
+﻿@model APPBASE.Models.TrnstockVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-2">
+        @if (ViewData.ModelState["TRN_DT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="TRN_DT">Tanggal Mutasi</label>
+            <input type="text" id="TRN_DT" name="TRN_DT" value="@Html.DisplayFor(model => model.TRN_DT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["TRN_DT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_DT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["TRN_DT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_DT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-6">
+        @if (ViewData.ModelState["TRN_CODE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="TRN_CODE">Nomor</label>
+            <input type="text" id="TRN_CODE" name="TRN_CODE" value="@Html.DisplayFor(model => model.TRN_CODE)" class="form-control" maxlength = "60" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["TRN_CODE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_CODE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["TRN_CODE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_CODE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-6">
+        @if (ViewData.ModelState["TRN_RECIPIENT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="TRN_RECIPIENT">Disetujui oleh</label>
+            <input type="text" id="TRN_RECIPIENT" name="TRN_RECIPIENT" value="@Html.DisplayFor(model => model.TRN_RECIPIENT)" class="form-control" maxlength = "60" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["TRN_RECIPIENT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_RECIPIENT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["TRN_RECIPIENT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRN_RECIPIENT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

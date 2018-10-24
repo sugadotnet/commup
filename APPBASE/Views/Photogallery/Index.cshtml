@@ -1,0 +1,75 @@
+﻿@model IEnumerable<APPBASE.Models.PhotogallerylistVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Photo Sekolah";
+    if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_P) { Layout = "~/Views/Shared/_Layout2cols.cshtml"; }
+    else if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_CT) { Layout = "~/Views/Shared/_Layout2cols.cshtml"; }
+    else { Layout = "~/Views/Shared/_Layout.cshtml"; }
+    
+}
+
+@{string vsClassBP_STS = "";}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        @if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_SM)
+        {
+            <div class="box-tools">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <a href="@Url.Action("Create")" class="btn btn-flat btn-sm btn-warning" style="margin-left:5px; color:White;"><i class="fa fa-plus"></i> Tambah Foto</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div><!-- /.box-header -->
+
+    <div class="box-body table-responsive no-padding">
+        <ul class="mailbox-attachments clearfix">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <span class="mailbox-attachment-icon has-img">
+                    <img src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Gallery(item.PHOTO_IMG)" alt="Foto" />
+                    </span>
+                    <div class="mailbox-attachment-info">
+                    @if (hlpConfig.SessionInfo.getAppRoleId() == valFLAG.FLAG_ROLE_SM)
+                    {
+                        <a href="@Url.Action("Details", new { id = item.ID })" class="mailbox-attachment-name"><i class="fa fa-edit"></i> @item.TITLE</a>
+                    }
+                    else
+                    {
+                        @item.TITLE
+                    }
+                                
+                    </div>
+                </li>
+            }
+        </ul>
+    </div><!-- /.box-body -->
+
+    <div class="box-footer">
+    </div><!-- /.box-footer -->
+
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

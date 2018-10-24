@@ -1,0 +1,115 @@
+﻿@model APPBASE.Models.ProductnewVM
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PRODNEW_NAME0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PRODNEW_NAME">Nama Barang</label>
+            <input type="text" id="PRODNEW_NAME" name="PRODNEW_NAME" value="@Html.DisplayFor(model => model.PRODNEW_NAME)" class="form-control" maxlength = "255" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PRODNEW_NAME1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_NAME1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PRODNEW_NAME2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_NAME2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PRODNEW_QTY0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PRODNEW_QTY">Jumlah Awal</label>
+            <input type="text" id="PRODNEW_QTY" name="PRODNEW_QTY" value="@Html.DisplayFor(model => model.PRODNEW_QTY)" class="form-control data-mask-integer" style="text-align:right;"  @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PRODNEW_QTY1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_QTY1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PRODNEW_QTY2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_QTY2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["UOM_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="UOM_ID">Satuan</label>
+                <select id="UOM_ID" name="UOM_ID" class="form-control select2" data-placeholder="Select UOM_ID" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.UOM)
+                    {
+
+                        if (Model.UOM_ID == item.ID) {<option selected value="@item.ID">@item.LOV_CODE</option> }
+                        else {<option value="@item.ID">@item.LOV_CODE</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["UOM_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("UOM_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["UOM_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("UOM_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PRODNEW_PRICE_BASE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PRODNEW_PRICE_BASE">Harga Jual (Sebelum PPN)</label>
+            <input type="text" id="PRODNEW_PRICE_BASE_S" name="PRODNEW_PRICE_BASE_S" value="@Html.DisplayFor(model => model.PRODNEW_PRICE_BASE)" class="form-control data-mask-decimal" style="text-align:right;"  @vsReadonlyTextbox />
+            <input type="hidden" id="PRODNEW_PRICE_BASE" name="PRODNEW_PRICE_BASE" value="@Html.DisplayFor(model => model.PRODNEW_PRICE_BASE)" class="form-control data-mask-decimal"  @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["PRODNEW_PRICE_BASE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_PRICE_BASE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PRODNEW_PRICE_BASE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PRODNEW_PRICE_BASE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

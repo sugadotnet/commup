@@ -1,0 +1,68 @@
+﻿@model APPBASE.Models.UserlistVM
+
+@{
+    ViewBag.Title = "Tambah Data User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tambah Data User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Tambah Data User</legend>
+        <div class="editor-field">
+            <input type="button" id="cmdLookupRES" name="cmdLookupRES" value="Dari Data Karyawan" />
+
+            <div id="RSLTDATA_TAG"></div>
+            
+            @Html.HiddenFor(model => model.RES_NM1, new { id = "RES_NM1" })
+            @Html.ValidationMessageFor(model => model.RES_NM1)
+        </div>
+
+        @{Html.RenderPartial("_Inputs");}
+
+        <p>
+            <input type="submit" value="Simpan" />
+        </p>
+    </fieldset>
+}
+<div id="DialogLookup"><div id="DialogLookupContent"></div></div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        //Dialog Lookup
+        initDlgLookUp('#DialogLookup');
+        /*=========================================
+        EVENTS
+        =========================================*/
+        //Command LookUp [Employee=]
+        $("#cmdLookupRES").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            showLookup_LoadSingle('Lookup/ShowUserRes_getData', '', vaSearchValue,
+                                  'User/_Create_showData', 'RSLTDATA_TAG',
+                                  'RES_RUID', '', 'RES_NM1');
+        }); //End  $("#btnLookup").click
+        //Command Reset
+        $("#cmdReset").click(function () {
+            return true;
+        });
+    }); //End $(document).ready
+</script>
+
+}

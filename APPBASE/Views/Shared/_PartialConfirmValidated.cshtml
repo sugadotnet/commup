@@ -1,0 +1,10 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+<!-- Confirm Validate -->
+@if (ViewBag.CRUDSavedOrDelete == valFLAG.FLAG_TRUE) {
+<div class="alert alert-success alert-dismissable">
+    <i class="fa fa-check"></i>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <b>Informasi!</b> Data berhasil di validasi
+</div>
+}

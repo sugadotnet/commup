@@ -1,0 +1,163 @@
+﻿@model APPBASE.Models.EmployeedetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["EMPLHIST_COMPANY10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_COMPANY1">Nama Perusahaan</label>
+            <input type="text" id="EMPLHIST_COMPANY1" name="EMPLHIST_COMPANY1" value="@Html.DisplayFor(model => model.EMPLHIST_COMPANY1)" class="form-control" maxlength = "60" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["EMPLHIST_COMPANY11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_COMPANY11")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLHIST_COMPANY12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_COMPANY12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["EMPLHIST_ADDR110"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        @if (ViewData.ModelState["EMPLHIST_ADDR210"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_ADDR11">Alamat</label>
+
+            <div>
+                <input type="text" id="EMPLHIST_ADDR11" name="EMPLHIST_ADDR11" value="@Html.DisplayFor(model => model.EMPLHIST_ADDR11)" class="form-control" maxlength = "90" @vsReadonlyTextbox />
+                @if (ViewData.ModelState["EMPLHIST_ADDR111"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_ADDR111")
+                        </label>
+                }
+                @if (ViewData.ModelState["EMPLHIST_ADDR112"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_ADDR112")
+                        </label>
+                }
+            </div> <!-- Alamat 1 -->
+            <div>
+                <input type="text" id="EMPLHIST_ADDR21" name="EMPLHIST_ADDR21" value="@Html.DisplayFor(model => model.EMPLHIST_ADDR21)" class="form-control" maxlength = "90" @vsReadonlyTextbox />
+                @if (ViewData.ModelState["EMPLHIST_ADDR211"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_ADDR211")
+                        </label>
+                }
+                @if (ViewData.ModelState["EMPLHIST_ADDR212"] != null)
+                {
+                        <label class="control-label" for="inputError">
+                        <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_ADDR212")
+                        </label>
+                }
+            </div> <!-- Alamat 2 -->
+
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-sm-12 col-md-8">
+        @if (ViewData.ModelState["EMPLHIST_JOBTITLE10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_JOBTITLE1">Jabatan</label>
+            <input type="text" id="EMPLHIST_JOBTITLE1" name="EMPLHIST_JOBTITLE1" value="@Html.DisplayFor(model => model.EMPLHIST_JOBTITLE1)" class="form-control" maxlength = "60" @vsReadonlyTextbox />
+            @if (ViewData.ModelState["EMPLHIST_JOBTITLE11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_JOBTITLE11")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLHIST_JOBTITLE12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_JOBTITLE12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 col-md-8 -->
+
+    <div class="col-sm-12 col-md-2">
+        @if (ViewData.ModelState["EMPLHIST_FROMDT10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_FROMDT1">Dari Tanggal</label>
+            <input type="text" id="EMPLHIST_FROMDT1" name="EMPLHIST_FROMDT1" value="@Html.DisplayFor(model => model.EMPLHIST_FROMDT1)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+            @if (ViewData.ModelState["EMPLHIST_FROMDT11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_FROMDT11")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLHIST_FROMDT12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_FROMDT12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 col-md-2 -->
+
+    <div class="col-sm-12 col-md-2">
+        @if (ViewData.ModelState["EMPLHIST_TODT10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_TODT1">Sampai Tanggal</label>
+            <input type="text" id="EMPLHIST_TODT1" name="EMPLHIST_TODT1" value="@Html.DisplayFor(model => model.EMPLHIST_TODT1)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+            @if (ViewData.ModelState["EMPLHIST_TODT11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_TODT11")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLHIST_TODT12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_TODT12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 col-md-2 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["EMPLHIST_JOBDESC10"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="EMPLHIST_JOBDESC1">Deskripsi Pekerjaan</label>
+            <textarea id="EMPLHIST_JOBDESC1" name="EMPLHIST_JOBDESC1" class="form-control" maxlength="500" @vsReadonlyTextbox>@Html.DisplayFor(model => model.EMPLHIST_JOBDESC1)</textarea>
+
+
+            @if (ViewData.ModelState["EMPLHIST_JOBDESC11"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_JOBDESC11")
+                    </label>
+            }
+            @if (ViewData.ModelState["EMPLHIST_JOBDESC12"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLHIST_JOBDESC12")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

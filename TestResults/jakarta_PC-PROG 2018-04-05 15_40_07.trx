@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="004b9c53-ea98-430e-a9e5-a4b1c0f1514d" name="jakarta@PC-PROG 2018-04-05 15:40:07" runUser="PC-PROG\jakarta" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="2b31ee0e-7d2c-4b5a-91e8-919d9b483623">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="jakarta_PC-PROG 2018-04-05 15_40_07">
+      <DeploymentItem filename="E:\WRK\WORK\GITLab\HDP\PRODUKSTOK\Src\APPBASE\APPBASE\bin\APPBASE.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2018-04-05T15:40:07.2259050+07:00" queuing="2018-04-05T15:40:08.2789653+07:00" start="2018-04-05T15:40:08.4499750+07:00" finish="2018-04-05T15:40:31.6673030+07:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="2" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="1" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="PC-PROG" outcome="Error" timestamp="2018-04-05T15:40:31.6663029+07:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="testBarcode_notNull" storage="e:\wrk\work\gitlab\hdp\produkstok\src\appbase\unittest\bin\debug\unittest.dll" id="58293536-13b4-dfc4-7971-f78e11ba27c8">
+      <Execution id="a735ad85-b8f4-499d-bcd5-9e82e5a00e87" />
+      <TestMethod codeBase="E:/WRK/WORK/GITLab/HDP/PRODUKSTOK/Src/APPBASE/Unittest/bin/Debug/Unittest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Unittest.UnitTest1, Unittest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="testBarcode_notNull" />
+    </UnitTest>
+    <UnitTest name="testBarcode_ValidValue" storage="e:\wrk\work\gitlab\hdp\produkstok\src\appbase\unittest\bin\debug\unittest.dll" id="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee">
+      <Execution id="b5885fca-b94e-4acc-9e71-23822a26d02b" />
+      <TestMethod codeBase="E:/WRK/WORK/GITLab/HDP/PRODUKSTOK/Src/APPBASE/Unittest/bin/Debug/Unittest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Unittest.UnitTest1, Unittest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="testBarcode_ValidValue" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="58293536-13b4-dfc4-7971-f78e11ba27c8" executionId="a735ad85-b8f4-499d-bcd5-9e82e5a00e87" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee" executionId="b5885fca-b94e-4acc-9e71-23822a26d02b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="a735ad85-b8f4-499d-bcd5-9e82e5a00e87" testId="58293536-13b4-dfc4-7971-f78e11ba27c8" testName="testBarcode_notNull" computerName="PC-PROG" duration="00:00:23.0923208" startTime="2018-04-05T15:40:08.5749822+07:00" endTime="2018-04-05T15:40:31.6673030+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a735ad85-b8f4-499d-bcd5-9e82e5a00e87">
+    </UnitTestResult>
+    <UnitTestResult executionId="b5885fca-b94e-4acc-9e71-23822a26d02b" testId="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee" testName="testBarcode_ValidValue" computerName="PC-PROG" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b5885fca-b94e-4acc-9e71-23822a26d02b">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,0 +1,17 @@
+﻿@model APPBASE.Models.TrnstockVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+@using APPBASE.Svcbiz
+@{int nNO = 0;}
+
+<!-- title Table -->
+<table width="700pt">
+<!-- title row -->
+    <tr class="title">
+        <td colspan="4" style="text-align:left;">@ViewBag.Title</td>
+        <td colspan="3" style="text-align:right;">No: @Model.TRN_CODE</td>
+    </tr>
+    <tr class="title">
+        <td colspan="7">&nbsp;</td>
+    </tr>
+</table>

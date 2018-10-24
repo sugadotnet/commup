@@ -1,0 +1,137 @@
+﻿@model APPBASE.Models.TrnstockVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+@{int nCount = 0; int nNo = 1;}
+@{string sValID = "";}
+
+@if (ViewData.ModelState["ITEM0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <table class="table table-striped" style="width:100%;">
+            <thead>
+                <tr>
+                    <th style="width:5%;">No</th>
+                    <th style="width:10%;">Kode</th>
+                    <th style="width:30%;">Nama Barang</th>
+                    <th style="width:5%;">
+                        <div>Jumlah</div>
+                        <div>Stok</div>
+                    </th>
+                    <th style="width:5%;">
+                        <div>Jumlah</div>
+                        <div>Mutasi</div>
+                    </th>
+                    <th style="width:5%; text-align:center;">Satuan</th>
+                    <th style="width:20%; text-align:center;">Mutasi ke-</th>
+                    <th style="width:20%; text-align:center;">Keterangan</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="7" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model.LISTITEM)
+                {
+                    sValID = "ITEM#" + item.PRODSTOCK_ID.ToString();
+                    if (ViewData.ModelState[sValID] != null)
+                    {
+                        <tr>
+                            <td colspan="8">
+                                <span>
+                                    @if (ViewData.ModelState["TRND_QTY#" + item.PRODSTOCK_ID] != null)
+                                    {
+                                        <div class="form-group @vsErrClass">
+                                            <label class="control-label" for="inputError">
+                                            <i class="fa fa-times-circle-o"></i> (A) @Html.ValidationMessage("TRND_QTY#" + item.PRODSTOCK_ID)
+                                            </label>
+                                        </div>
+                                    }
+                                </span>
+                                <span>
+                                    @if (ViewData.ModelState["STORAGE_TARGETID#" + item.PRODSTOCK_ID] != null)
+                                    {
+                                        <div class="form-group @vsErrClass">
+                                            <label class="control-label" for="inputError">
+                                            <i class="fa fa-times-circle-o"></i> (B) @Html.ValidationMessage("STORAGE_TARGETID#" + item.PRODSTOCK_ID)
+                                            </label>
+                                        </div>
+                                    }
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                    
+                    <tr>
+                        <td>
+                            <span>@nNo</span>
+                            <input type="hidden" id="PROD_ID" name="LISTITEM[@nCount].PROD_ID" value="@item.PROD_ID" />
+                            <input type="hidden" id="PRODSTOCK_ID" name="LISTITEM[@nCount].PRODSTOCK_ID" value="@item.PRODSTOCK_ID" />
+
+                        </td>
+                        <td class="SEARCHABLE_ROWS"><input type="hidden" name="LISTITEM[@nCount].PROD_CODE" value="@item.PROD_CODE" />
+                            @Html.DisplayFor(modelItem => item.PROD_CODE)
+                        </td>
+                        <td><input type="hidden" name="LISTITEM[@nCount].PROD_NAME" value="@item.PROD_NAME" />
+                            @Html.DisplayFor(modelItem => item.PROD_NAME)
+                        </td>
+                        <td><input type="hidden" name="LISTITEM[@nCount].STOCK_QTY" value="@Html.DisplayFor(model => item.STOCK_QTY)"/>
+                            @item.STOCK_QTY
+                        </td>
+                        <td>
+                            @if (ViewData.ModelState["TRND_QTY#" + item.PRODSTOCK_ID] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+                            <div class="form-group @vsErrClass">
+                                @if (ViewData.ModelState["TRND_QTY#" + item.PRODSTOCK_ID] != null) {<label class="control-label" for="inputError">(A)</label> }
+                                <input type="text" id="TRND_QTY" name="LISTITEM[@nCount].TRND_QTY" value="@Html.DisplayFor(model => item.TRND_QTY)" class="form-control data-mask-integer TRND_QTY" style="text-align:right; padding:0 3px 0 0;"  @vsReadonlyTextbox />
+                            </div>
+                        </td>
+                        <td style="text-align:center;">@Html.DisplayFor(modelItem => item.UOM_CODE)</td>
+                        <td>
+                            @if (ViewData.ModelState["STORAGE_TARGETID#" + item.PRODSTOCK_ID] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+                            <div class="form-group @vsErrClass">
+                                @if (ViewData.ModelState["STORAGE_TARGETID#" + item.PRODSTOCK_ID] != null) {<label class="control-label" for="inputError">(B)</label> }
+                                <select id="STORAGE_TARGETID" name="LISTITEM[@nCount].STORAGE_TARGETID" class="form-control select2" data-placeholder="Select STORAGE_TARGETID" style="width: 100%;" @vsReadonlyTextbox>
+                                    <option selected value=""></option>
+                                    @foreach (var listitem in ViewBag.STORAGE)
+                                    {
+
+                                        if (item.STORAGE_TARGETID == listitem.ID)
+                                        {<option selected value="@listitem.ID">@listitem.STORAGE_NAME</option> }
+                                        else
+                                        {<option value="@listitem.ID">@listitem.STORAGE_NAME</option> }
+                                    }
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            @if (ViewData.ModelState["TRND_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+                            <input type="text" id="TRND_DESC" name="LISTITEM[@nCount].TRND_DESC" value="@Html.DisplayFor(model => item.TRND_DESC)" class="form-control" maxlength = "255" @vsReadonlyTextbox />
+
+                            @if (ViewData.ModelState["TRND_DESC1"] != null)
+                            {
+                                    <label class="control-label" for="inputError">
+                                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRND_DESC1")
+                                    </label>
+                            }
+                            @if (ViewData.ModelState["TRND_DESC2"] != null)
+                            {
+                                    <label class="control-label" for="inputError">
+                                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TRND_DESC2")
+                                    </label>
+                            }
+                        </td>
+                    </tr>
+                    nCount++; nNo++;
+                }
+            </tbody>
+        </table>

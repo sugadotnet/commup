@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Appname = "Produk Stok";
+}
+
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+@using APPBASE.Svcbiz
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>@ViewBag.Appname | @ViewBag.Title</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- csslayout -->
+        <link href="@Url.Content("~/")Content/reset.css" rel="stylesheet" type="text/css" />
+        @RenderSection("includeTOP", required: false)
+    </head>
+    <body class="report">
+        @RenderBody()
+        @RenderSection("includeBOTTOM", required: false)
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

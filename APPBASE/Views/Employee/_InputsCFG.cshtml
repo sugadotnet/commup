@@ -1,0 +1,73 @@
+﻿@model APPBASE.Models.EmployeedetailVM
+@using APPBASE.Helpers
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["BRANCH_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="BRANCH_ID">Cabang/Pusat</label>
+                <select id="BRANCH_ID" name="BRANCH_ID" class="form-control select2" data-placeholder="Select Cabang/Pusat" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.BRANCHALL)
+                    {
+
+                        if (Model.BRANCH_ID == item.ID) {<option selected value="@item.ID">@item.BRANCH_DESC</option> }
+                        else {<option value="@item.ID">@item.BRANCH_DESC</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["BRANCH_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("BRANCH_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["BRANCH_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("BRANCH_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["SENTRA_ID0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="SENTRA_ID">Sentra</label>
+                <select id="SENTRA_ID" name="SENTRA_ID" class="form-control select2" data-placeholder="Select Sentra" style="width: 100%;" @vsReadonlyTextbox>
+                    <option selected value=""></option>
+                    @foreach (var item in ViewBag.SENTRA)
+                    {
+
+                        if (Model.SENTRA_ID == item.ID) {<option selected value="@item.ID">@item.SENTRA_NAME</option> }
+                        else {<option value="@item.ID">@item.SENTRA_NAME</option> }
+                    }
+                </select>
+
+            @if (ViewData.ModelState["SENTRA_ID1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SENTRA_ID1")
+                    </label>
+            }
+            @if (ViewData.ModelState["SENTRA_ID2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("SENTRA_ID2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

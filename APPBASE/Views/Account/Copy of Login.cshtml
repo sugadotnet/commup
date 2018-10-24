@@ -1,0 +1,34 @@
+﻿@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+
+@section IncludeTop{
+
+<style type="text/css">
+.carousel {
+    border-radius: 45px;
+    overflow: hidden;
+}
+.carousel img {
+    border-radius: 45px;
+}
+
+</style>
+
+}
+
+    <div class="row" style="margin:15px;">
+        <div class="col-sm-12 col-md-9">
+            <div class="form-group"> <span class="show-lg" style="padding-left:150px;padding-right:150px;">@{Html.RenderPartial("_PartialCarousel");}</span> </div>
+        </div> <!-- /.col-sm-12 col-md-6 -->
+        <div class="col-sm-12 col-md-3 pull-right-lg">
+            @{Html.RenderPartial("Login_");}
+        </div> <!-- /.col-sm-12 col-md-6 -->
+    </div> <!-- /.row -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

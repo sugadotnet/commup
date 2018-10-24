@@ -1,0 +1,27 @@
+﻿@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+
+@section IncludeTop{
+
+<style type="text/css">
+.carousel {
+    border-radius: 45px;
+    overflow: hidden;
+}
+.carousel img {
+    border-radius: 45px;
+}
+
+</style>
+
+}
+
+<div class="row" style="margin:15px; margin: 7% auto;">
+<div class="col-sm-12 col-md-3 col-md-offset-5">
+    @{Html.RenderPartial("Login_");}
+</div> <!-- /.col-sm-12 col-md-6 -->
+</div> <!-- /.row -->

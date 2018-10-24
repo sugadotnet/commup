@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Tentang Kami";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+
+
+    <div class="row" style="margin:15px;">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">@{Html.RenderPartial("_PartialCarousel");}</div>
+        
+        </div> <!-- /.col-sm-12 col-md-6 -->
+
+        <div class="col-sm-12 col-md-6">
+                <a href="@Url.Action("Login", "Account")" class="btn btn-app pull-right"><i class="fa fa-power-off"></i> LOGIN</a>
+                <h1 class="page-header" style="text-align:center;">TENTANG KAMI</h1>
+                @{Html.RenderPartial("About_");}
+        </div> <!-- /.col-sm-12 col-md-6 -->
+    </div> <!-- /.row -->
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}

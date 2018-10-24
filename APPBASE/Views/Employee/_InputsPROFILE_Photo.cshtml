@@ -1,0 +1,46 @@
+﻿@model APPBASE.Models.EmployeedetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-sm-12">
+        @if (Model != null)
+        {
+            <img id="imgEMPLOYEE_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Employee(Model.EMPLOYEE_IMG)" class="img-thumbnail" alt="Foto" />
+        }
+        else
+        {
+            <img id="imgEMPLOYEE_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_EmployeeNA()" class="img-thumbnail" alt="Foto" />
+        }
+        @if (ViewData.ModelState["EMPLOYEE_IMG0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+        <div class="form-group @vsErrClass">
+            @Html.HiddenFor(model => model.EMPLOYEE_IMG)
+            @if (ViewData.ModelState["EMPLOYEE_IMG1"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLOYEE_IMG1")
+                </label>
+            }
+            @if (ViewData.ModelState["EMPLOYEE_IMG2"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("EMPLOYEE_IMG2")
+                </label>
+            }
+        </div>
+        @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)||(ViewBag.CRUD_type == hlpFlags_CRUDOption.UPDATE)) {
+            <!-- Upload Photo btn -->
+            <button type="button" id="cmdEMPLOYEE_IMG" name="cmdEMPLOYEE_IMG" class="btn btn-primary btn-flat btn-block" style="margin-top:2px;">Upload Photo</button>
+        }
+        <span id="FileContainerEMPLOYEE_IMG"><input type="file" id="FileEMPLOYEE_IMG" name="FileEMPLOYEE_IMG" accept="image/*; capture=camera" /></span>
+    </div><!-- /.col (LEFT) -->
+</div><!-- /.row -->

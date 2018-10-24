@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Mutasi Barang / Furniture - " + ViewBag.Storagebasename;
+    Layout = "~/Views/Shared/_LayoutPrintable.cshtml";
+}
+
+@section includeTOP {
+    <!-- csslayout -->
+    <link href="@Url.Content("~/")Content/print_mutasi.css" rel="stylesheet" type="text/css" />
+}
+
+@{Html.RenderPartial("Reportprint_data");}
+@{Html.RenderPartial("Reportprint_data_items");}
+
+
+<br /><br /><br /><br />
+<div class="no-print"><a href="@Url.Action("Index", "Trnstockkasir")" >Selesai</a></div>
+
+@section scripts {
+
+<script type="text/javascript">
+    window.print();
+</script>
+
+}

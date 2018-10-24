@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="3722a9c3-6633-4ffd-840b-cb4d8a4bea73" name="jakarta@PC-PROG 2018-04-05 15:09:48" runUser="PC-PROG\jakarta" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="2b31ee0e-7d2c-4b5a-91e8-919d9b483623">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="jakarta_PC-PROG 2018-04-05 15_09_48">
+      <DeploymentItem filename="E:\WRK\WORK\GITLab\HDP\PRODUKSTOK\Src\APPBASE\APPBASE\bin\APPBASE.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2018-04-05T15:09:48.4188752+07:00" queuing="2018-04-05T15:09:49.3919309+07:00" start="2018-04-05T15:09:49.6099433+07:00" finish="2018-04-05T15:10:15.4114191+07:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" passed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="testBarcode_notNull" storage="e:\wrk\work\gitlab\hdp\produkstok\src\appbase\unittest\bin\debug\unittest.dll" id="58293536-13b4-dfc4-7971-f78e11ba27c8">
+      <Execution id="cc5d3627-34da-44ba-ac7e-cffd06e475ed" />
+      <TestMethod codeBase="E:/WRK/WORK/GITLab/HDP/PRODUKSTOK/Src/APPBASE/Unittest/bin/Debug/Unittest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Unittest.UnitTest1, Unittest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="testBarcode_notNull" />
+    </UnitTest>
+    <UnitTest name="testBarcode_ValidValue" storage="e:\wrk\work\gitlab\hdp\produkstok\src\appbase\unittest\bin\debug\unittest.dll" id="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee">
+      <Execution id="8495c785-5586-49b4-94aa-004baf4aed4a" />
+      <TestMethod codeBase="E:/WRK/WORK/GITLab/HDP/PRODUKSTOK/Src/APPBASE/Unittest/bin/Debug/Unittest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Unittest.UnitTest1, Unittest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="testBarcode_ValidValue" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="58293536-13b4-dfc4-7971-f78e11ba27c8" executionId="cc5d3627-34da-44ba-ac7e-cffd06e475ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee" executionId="8495c785-5586-49b4-94aa-004baf4aed4a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="cc5d3627-34da-44ba-ac7e-cffd06e475ed" testId="58293536-13b4-dfc4-7971-f78e11ba27c8" testName="testBarcode_notNull" computerName="PC-PROG" duration="00:00:13.4427055" startTime="2018-04-05T15:09:49.7579518+07:00" endTime="2018-04-05T15:10:04.8348142+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cc5d3627-34da-44ba-ac7e-cffd06e475ed">
+    </UnitTestResult>
+    <UnitTestResult executionId="8495c785-5586-49b4-94aa-004baf4aed4a" testId="6377ed0f-27bb-dc86-d3a8-65c051e8c0ee" testName="testBarcode_ValidValue" computerName="PC-PROG" duration="00:00:10.4676448" startTime="2018-04-05T15:10:04.8548153+07:00" endTime="2018-04-05T15:10:15.3334146+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8495c785-5586-49b4-94aa-004baf4aed4a">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;899310105010&gt;. Actual:&lt;8993101050109&gt;. </Message>
+          <StackTrace>   at Unittest.UnitTest1.testBarcode_ValidValue() in E:\WRK\WORK\GITLab\HDP\PRODUKSTOK\Src\APPBASE\Unittest\UnitTest1.cs:line 38
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

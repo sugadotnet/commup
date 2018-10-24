@@ -1,0 +1,96 @@
+﻿@model APPBASE.Models.PhotogallerydetailVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-sm-12 col-md-4">
+        @if (Model != null)
+        {
+            <img id="imgPHOTO_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Gallery(Model.PHOTO_IMG)" class="img-thumbnail" alt="Foto" />
+        }
+        else
+        {
+            <img id="imgPHOTO_IMG" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_GalleryNA()" class="img-thumbnail" alt="Foto" />
+        }
+        @if (ViewData.ModelState["PHOTO_IMG0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+        <div class="form-group @vsErrClass">
+            @Html.HiddenFor(model => model.PHOTO_IMG)
+            @if (ViewData.ModelState["PHOTO_IMG1"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHOTO_IMG1")
+                </label>
+            }
+            @if (ViewData.ModelState["PHOTO_IMG2"] != null)
+            {
+                <label class="control-label" for="inputError">
+                <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PHOTO_IMG2")
+                </label>
+            }
+        </div>
+        @if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE)||(ViewBag.CRUD_type == hlpFlags_CRUDOption.UPDATE)) {
+            <!-- Upload Photo btn -->
+            <button type="button" id="cmdPHOTO_IMG" name="cmdPHOTO_IMG" class="btn btn-primary btn-flat btn-block" style="margin-top:2px;">Upload Photo</button>
+        }
+        <span id="FileContainerPHOTO_IMG"><input type="file" id="FilePHOTO_IMG" name="FilePHOTO_IMG" accept="image/*; capture=camera" /></span>
+    </div><!-- /.col (LEFT) -->
+</div><!-- /.row -->
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["TITLE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="TITLE">Judul Foto</label>
+            <input type="text" id="TITLE" name="TITLE" value="@Html.DisplayFor(model => model.TITLE)" class="form-control VARCHAR" maxlength = "50" @vsReadonlyTextbox />
+
+            @if (ViewData.ModelState["TITLE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TITLE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["TITLE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("TITLE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["FULL_DESC0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="FULL_DESC">Deskripsi</label>
+            <textarea id="FULL_DESC" name="FULL_DESC" class="form-control" maxlength="500" @vsReadonlyTextbox>@Html.DisplayFor(model => model.FULL_DESC)</textarea>
+
+
+            @if (ViewData.ModelState["FULL_DESC1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("FULL_DESC1")
+                    </label>
+            }
+            @if (ViewData.ModelState["FULL_DESC2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("FULL_DESC2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+

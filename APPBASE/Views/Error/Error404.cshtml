@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "404 Halaman tidak tersedia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="error-page">
+    <h2 class="headline text-info"> 404</h2>
+    <div class="error-content">
+        <h3><i class="fa fa-warning text-yellow"></i> Maaf... Halaman tidak tersedia.</h3>
+        <p>
+            Sementara anda bisa kembali ke <a href="@Url.Action("Index", "Home")">halaman utama</a> atau silahkan menghubungi admin.
+        </p>
+    </div><!-- /.error-content -->
+</div><!-- /.error-page -->
+
+@section scripts {
+}
+

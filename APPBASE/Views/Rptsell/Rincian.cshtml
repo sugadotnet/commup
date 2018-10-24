@@ -1,0 +1,50 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Rincian Laporan Penjualan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+@{int nNO = 0;}
+
+@using (Html.BeginForm())
+{
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+        <div class="box-tools">
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <div class="row">
+            <hr />
+            <div class="col-sm-12">
+                @{Html.RenderPartial("Rincian_data");}
+            </div> <!-- End col -->
+        </div> <!-- End row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+    
+    
+}
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+
+
+    }); //End $(document).ready
+</script>
+
+}

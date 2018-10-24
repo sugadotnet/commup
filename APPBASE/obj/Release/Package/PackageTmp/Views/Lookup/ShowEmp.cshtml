@@ -1,0 +1,77 @@
+﻿@model IEnumerable<APPBASE.Models.Employeeinfo>
+
+@{
+    ViewBag.Title = "Daftar Karyawan";
+    Layout = "~/Views/Shared/_LayoutLookup.cshtml";
+}
+
+<h2>Daftar Karyawan</h2>
+
+@if (Model == null) { 
+    <table>
+        <tr>
+            <td style="width:100%;text-align:center;">@{Html.RenderPartial("_EmptyPartial");}</td>
+        </tr>
+    </table>
+}
+
+@if (Model != null)
+{
+<div id="DataContent" class="ListDataScreen">
+    <div>
+        Cari
+        <input type="text" id="searchValue" class="FieldEnableAlways" placeholder="Cari Departemen/Karyawan" style="width:50%;"/>
+    </div>
+<table>
+    <thead>
+        <tr>
+            <th>Departemen</th>
+            <th>Nama Karyawan</th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr class="LOOKUPROW">
+        <td class="SEARCHABLE_ROWS_DEPT" style="width:50%;">
+            @Html.DisplayFor(modelitem => item.DEPT_NM)
+        </td>
+        <td class="SEARCHABLE_ROWS_EMP" style="width:50%;">
+            @Html.DisplayFor(modelitem => item.RES_NM1)
+            <input type="hidden" class="RUID" value="@Html.DisplayFor(modelitem => item.RUID)" />
+            <input type="hidden" class="ID" value="@Html.DisplayFor(modelitem => item.RES_ID)" />
+            <input type="hidden" class="NAME" value="@Html.DisplayFor(modelitem => item.RES_NM1)" />
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
+</div>    
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS_DEPT, .SEARCHABLE_ROWS_EMP');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+        $(".LOOKUPROW").click(function () {
+            var vsRUID = $(this).children().children(".RUID").val();
+            var vsID = $(this).children().children(".ID").val();
+            var vsNAME = $(this).children().children(".NAME").val();
+
+            var vsRUID_TAG = '@ViewBag.RUID_TAG';
+            var vsID_TAG = '@ViewBag.ID_TAG';
+            var vsNAME_TAG = '@ViewBag.NAME_TAG';
+            if (isEmptyString(vsRUID_TAG) != true) { $('#' + vsRUID_TAG).val(vsRUID); }
+            if (isEmptyString(vsID_TAG) != true) { $('#' + vsID_TAG).val(vsID); }
+            if (isEmptyString(vsNAME_TAG) != true) { $('#' + vsNAME_TAG).val(vsNAME); }
+            $('#DialogLookup').dialog('close');
+        }); //End  $(".LOOKUPROW").click()
+    });   //End $(document).ready
+</script>

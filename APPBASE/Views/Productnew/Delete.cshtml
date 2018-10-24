@@ -1,0 +1,35 @@
+﻿@model APPBASE.Models.ProductnewVM
+@using APPBASE.Helpers
+
+@{
+    ViewBag.Title = "Hapus Produk Baru";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    Html.RenderPartial("_PartialConfirmDelete");
+
+    <div class="box box-info">
+        <div class="box-header">
+            <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            @{Html.RenderPartial("_Inputs");}
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.box-footer -->
+    </div><!-- /.box -->
+}
+
+
+@section scripts {
+
+<!-- Modal -->
+@{Html.RenderPartial("_Events");}
+
+}

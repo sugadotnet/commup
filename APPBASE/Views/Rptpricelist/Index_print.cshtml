@@ -1,0 +1,28 @@
+﻿@model IEnumerable<APPBASE.Models.ProductVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Data Pricelist";
+    Layout = "~/Views/Shared/_LayoutPrintable.cshtml";
+}
+
+
+
+@section includeTOP {
+    <!-- csslayout -->
+    <link href="@Url.Content("~/")Content/print_report.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="no-print"><a href="@Url.Action("Index", "Rptpricelist")" >Selesai</a></div>
+@{Html.RenderPartial("Index_print_data");}
+<div class="no-print"><a href="@Url.Action("Index", "Rptpricelist")" >Selesai</a></div>
+
+@section scripts {
+
+<script type="text/javascript">
+    window.print();
+</script>
+
+}

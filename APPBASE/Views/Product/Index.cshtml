@@ -1,0 +1,87 @@
+﻿@model IEnumerable<APPBASE.Models.ProductVM>
+@using APPBASE.Helpers
+@using APPBASE.Svcbiz
+@using APPBASE.Svcutil
+
+@{
+    ViewBag.Title = "Info Produk";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{string vsClassBP_STS = "";}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h3 class="box-title"></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>
+                        <div>Kode</div>
+                        <div>barang</div>
+                    </th>
+                    <th>Nama Barang</th>
+                    <th>Jumlah</th>
+                    <th>Harga Pricelist</th>
+                    <th>Foto</th>
+                    <th>
+                        <div>Tanggal</div>
+                        <div>Update</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null) {
+                    <tr>
+                        <td colspan="2" align="center">@{Html.RenderPartial("_PartialEmpty");}</td>
+                    </tr>
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Edit_pricelist", new { id = item.ID })" class="btn btn-flat btn-sm btn-success" style="margin-left:5px; color:White;"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PROD_CODE)</td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PROD_NAME)</td>
+                        <td class="SEARCHABLE_ROWS">@Html.DisplayFor(modelItem => item.PROD_QTY) @Html.DisplayFor(modelItem => item.UOM_DESC)</td>
+                        <td class="SEARCHABLE_ROWS">@hlpConvertionAndFormating.ConvertDecimalToStringFmtThousand(item.PROD_PRICE_BASE)</td>
+                        <td>
+                            @if (item.PROD_IMAGE != null)
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(item.PROD_IMAGE)" class="img-thumbnail img-wide-sm" alt="Foto" />
+                            }
+                            else
+                            {
+                                <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+                            }
+                        </td>
+                        <td>@hlpConvertionAndFormating.ConvertDateToStringDateShortFmt(item.PROD_PRICEDT)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+@section scripts {
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        doSearchAbleTable('#searchValue', '', '.SEARCHABLE_ROWS');
+
+        /*=========================================
+        EVENTS
+        =========================================*/
+    });   //End $(document).ready
+</script>
+
+}

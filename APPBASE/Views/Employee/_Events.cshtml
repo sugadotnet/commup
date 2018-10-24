@@ -1,0 +1,86 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("[data-mask]").inputmask(); //Optional if contains date field(s)
+        inputInteger();
+        $(".select2").select2();
+
+        /*=========================================
+        UPLOAD PHOTO EMPLOYEE_IMG
+        =========================================*/
+        $("#FileContainerEMPLOYEE_IMG").hide(); //Optional if contains upload image field(s)
+        $("#FileEMPLOYEE_IMG").on('change', function () {
+            previewImage(this, "#imgEMPLOYEE_IMG");
+        });
+        $("#cmdEMPLOYEE_IMG").click(function () {
+            $("#FileEMPLOYEE_IMG").click();
+        }); //End  $("#cmdEMPLOYEE_IMG").click
+
+        /*=========================================
+        EVENTS Lookup
+        =========================================*/
+        //Command LookUp [SEX_ID]
+        $("#cmdLookupSEX_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'SEX_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'SEX_DESC'; //DESC
+            showLookup('Lookup/ShowGender', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [MARITAL_ID]
+        $("#cmdLookupMARITAL_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'MARITAL_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'MARITAL_DESC'; //DESC
+            showLookup('Lookup/ShowMarital', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [RELIGION_ID]
+        $("#cmdLookupRELIGION_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'RELIGION_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'RELIGION_DESC'; //DESC
+            showLookup('Lookup/ShowReligion', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [EMPLSTS_ID]
+        $("#cmdLookupEMPLSTS_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'EMPLSTS_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'EMPLSTS_DESC'; //DESC
+            showLookup('Lookup/ShowEmplsts', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+        //Command LookUp [JOBTITLE_ID]
+        $("#cmdLookupJOBTITLE_ID").click(function () {
+            var vaSearchValue = new Array();
+            vaSearchValue[0] = "";
+            //            vaSearchValue[1] = "Data array 2";
+            //            vaSearchValue[2] = "Data array 3";
+            var vaTargetTag = new Array();
+            vaTargetTag[0] = 'JOBTITLE_ID'; //ID
+            vaTargetTag[1] = '';   //CD
+            vaTargetTag[2] = 'JOBTITLE_DESC'; //DESC
+            showLookup('Lookup/ShowJobtitle', '', vaSearchValue, vaTargetTag);
+        }); //End  $("#btnLookup").click
+    }); //End $(document).ready
+</script>
+

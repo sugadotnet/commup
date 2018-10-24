@@ -1,0 +1,23 @@
+﻿@using APPBASE.Helpers
+@using APPBASE.Svcapp
+
+
+<!-- sidebar menu: : style can be found in sidebar.less -->
+<ul class="sidebar-menu">
+    <li class="active">
+        <a href="@Url.Action("Index", "Home")" class="bg-brown">
+            <i class="fa fa-home"></i> <span>Home</span>
+        </a>
+    </li>
+    
+    @if (hlpConfig.SessionInfo.getAppUsername().ToUpper() == valDFLT.SYSADMIN_USER) { Html.RenderPartial("_PartialMenuSYSADMIN"); }
+    else {
+        // 1 = ADM	ADMIN
+        // 2 = GDG	PIC GUDANG ATAS
+        // 3 = GDG	PIC GUDANG BAWAH
+        // 4 = SLS	PIC SALES/DISPLAY
+        // 5 = CSR	PIC KASIR
+        Html.RenderPartial("_PartialMenu" + hlpConfig.SessionInfo.getAppRoleId().ToString());
+    }
+
+</ul>

@@ -1,0 +1,117 @@
+﻿@model APPBASE.Models.ProductVM
+@using APPBASE.Helpers
+@using APPBASE.Svcutil
+
+@{string vsErrClass = "";}
+@{string vsDisableButton = "";}
+@{Boolean isShowDropdown = true;}
+@{string vsReadonlyTextboxKey = "Readonly";}
+@{string vsReadonlyTextbox = "";}
+@if (ViewBag.CRUD_type == hlpFlags_CRUDOption.CREATE) { vsReadonlyTextboxKey = ""; }
+@if ((ViewBag.CRUD_type == hlpFlags_CRUDOption.VIEW) || (ViewBag.CRUD_type == hlpFlags_CRUDOption.DELETE)) { vsDisableButton = "disabled"; vsReadonlyTextbox = "Readonly"; isShowDropdown = false; }
+@{string vsDateFormat = "'alias': 'dd/mm/yyyy'";}
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROD_CODE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROD_CODE">Kode</label>
+            <input type="text" id="PROD_CODE" name="PROD_CODE" value="@Html.DisplayFor(model => model.PROD_CODE)" class="form-control" maxlength = "60" Readonly />
+
+            @if (ViewData.ModelState["PROD_CODE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_CODE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROD_CODE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_CODE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROD_NAME0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROD_NAME">Nama Barang</label>
+            <input type="text" id="PROD_NAME" name="PROD_NAME" value="@Html.DisplayFor(model => model.PROD_NAME)" class="form-control" maxlength = "255" Readonly />
+
+            @if (ViewData.ModelState["PROD_NAME1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_NAME1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROD_NAME2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_NAME2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROD_PRICE_BASE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROD_PRICE_BASE">Harga Pricelist</label>
+            <input type="text" id="PROD_PRICE_BASE_S" name="PROD_PRICE_BASE_S" value="@Html.DisplayFor(model => model.PROD_PRICE_BASE)" class="form-control data-mask-decimal" style="text-align:right;" />
+            <input type="hidden" id="PROD_PRICE_BASE" name="PROD_PRICE_BASE" value="@Html.DisplayFor(model => model.PROD_PRICE_BASE)" class="form-control" style="text-align:right;"/>
+
+            @if (ViewData.ModelState["PROD_PRICE_BASE1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_PRICE_BASE1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROD_PRICE_BASE2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_PRICE_BASE2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-sm-12 col-md-4">
+        <label for="PROD_PRICE_BASE">Foto Barang</label>
+        @if (Model != null)
+        {
+            <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_Product(Model.PROD_IMAGE)" class="img-thumbnail" alt="Foto" />
+        }
+        else
+        {
+            <img id="imgPROD_IMAGE" src="@Url.Content("~/")@Utility_FileUploadDownload.getImage_ProductNA()" class="img-thumbnail" alt="Foto" />
+        }
+        @if (ViewData.ModelState["PROD_IMAGE0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = "has-error"; }
+    </div><!-- /.col (LEFT) -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-xs-12">
+        @if (ViewData.ModelState["PROD_PRICEDT0"] != null) { vsErrClass = "has-error"; } else { vsErrClass = ""; }
+        <div class="form-group @vsErrClass">
+            <label for="PROD_PRICEDT">Tanggal Update</label>
+            <input type="text" id="PROD_PRICEDT" name="PROD_PRICEDT" value="@Html.DisplayFor(model => model.PROD_PRICEDT)" class="form-control" @vsReadonlyTextbox data-inputmask="@vsDateFormat" data-mask />
+
+            
+            @if (ViewData.ModelState["PROD_PRICEDT1"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_PRICEDT1")
+                    </label>
+            }
+            @if (ViewData.ModelState["PROD_PRICEDT2"] != null)
+            {
+                    <label class="control-label" for="inputError">
+                    <i class="fa fa-times-circle-o"></i> @Html.ValidationMessage("PROD_PRICEDT2")
+                    </label>
+            }
+        </div> <!-- /.form-group -->
+    </div> <!-- /.col-xs-12 -->
+</div><!-- /.row -->

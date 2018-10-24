@@ -1,0 +1,42 @@
+﻿@model APPBASE.Models.EmployeeNameDeptJobttlVM
+
+
+@if (Model != null)
+{
+   
+
+    <div>@Html.LabelFor(model => model.DEPT_NM)</div>
+    <div>@Html.DisplayFor(model => model.DEPT_NM)</div>
+
+    <div>@Html.LabelFor(model => model.JOB_TITLE_NM)</div>
+    <div>@Html.DisplayFor(model => model.JOB_TITLE_NM)</div>
+
+    <div>@Html.LabelFor(model => model.RES_NM1)</div>
+    <div>@Html.DisplayFor(model => model.RES_NM1)</div>
+    
+    
+    
+    
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*=========================================
+        INITIALIZE
+        =========================================*/
+        $("#USR_ID").val("@Html.DisplayFor(model => model.RES_NM1)");
+        $("#USR_NM1").val("@Html.DisplayFor(model => model.RES_NM1)");
+
+        /*=========================================
+        EVENTS 
+        =========================================*/
+
+        /*=========================================
+        FUNCTIONS
+        =========================================*/
+    });    //End $(document).ready
+</script>
+
+}
+else {
+   <span>@{Html.RenderPartial("_EmptyPartial");}</span>
+}
