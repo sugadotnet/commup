@@ -19,14 +19,3 @@ Commup is integrated application from stock, warehouse management, sales and cas
 1. Restore database APPBASEDB.bak
 2. Deploy files in folder dist into IIS
 3. Adjust connection string by modifying "web.config" file.
-
-```markdown
-
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sugadotnet/commup/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
