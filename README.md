@@ -15,25 +15,13 @@ Commup is integrated application from stock, warehouse management, sales and cas
 2. Microsoft SQL Server Express Edition.
 3. 2GB Memory
 
+### Installation
+1. Restore database APPBASEDB.bak
+2. Deploy files in folder dist into IIS
+3. Adjust connection string by modifying "web.config" file.
+
 ```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Jekyll Themes
 
