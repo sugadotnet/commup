@@ -11,7 +11,7 @@ Commup is integrated application from stock, warehouse management, sales and cas
 6. Dashboard base monitoring.
 
 ### System Requirement
-1. Windos operating system with IIS.
+1. Windows operating system with IIS.
 2. Microsoft SQL Server Express Edition.
 3. 2GB Memory
 
