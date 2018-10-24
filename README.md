@@ -10,6 +10,11 @@ Commup is integrated application from stock, warehouse management, sales and cas
 5. Product sales and payment.
 6. Dashboard base monitoring.
 
+### System Requirement
+1. Windos operating system with IIS.
+2. Microsoft SQL Server Express Edition.
+3. 2GB Memory
+
 ```markdown
 Syntax highlighted code block
 
